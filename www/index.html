@@ -97,7 +97,7 @@
 			function onDeviceReady()                    
 			{ 
 				getPosition();				
- 
+				document.getElementById('blanker').style.display = 'none';
 				alert('hi');
 				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
