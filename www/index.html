@@ -54,11 +54,11 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
 	document.addEventListener("deviceready",onDeviceReady,false);
-        app.initialize();
+        
 		function onDeviceReady()                    
 			{ 
 			alert('hi');
-				var push = PushNotification.init({ "android": {"senderID": "509786912381"},
+				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 				
 				push.on('registration', function(data) {
