@@ -79,7 +79,7 @@
 			  function onSuccess(position) {
 			  alert('The dice Id = '+deviceId);
 					
-				 document.getElementById('container-frame').src ='http://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devId=' + deviceId;
+				 document.getElementById('container-frame').src ='http://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devType=2&devId=' + deviceId;
 			   };
 
 			   function onError(error) {
@@ -91,7 +91,7 @@
 			{ 
 //				getPosition();				
  
-				alert('hi');
+				//alert('hi');
 				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 				
@@ -112,7 +112,7 @@
 				});
 				
 			// Blanker on change
-			document.addEventListener("online", doWhenOnline, false);
+				document.addEventListener("online", doWhenOnline, false);
 				document.addEventListener("offline", doWhenOffline, false);
 				var networkState = navigator.connection.type;
 				
