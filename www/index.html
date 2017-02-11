@@ -105,23 +105,7 @@
 			function onDeviceReady()                    
 			{ 
 				getPosition();
-				var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
-				};
-			 
-				// onError Callback receives a PositionError object 
-				// 
-				function onError(error) {
-					alert('code: '    + error.code    + '\n' +
-						  'message: ' + error.message + '\n');
-				}
+				
 			 
 				navigator.geolocation.getCurrentPosition(onSuccess, onError);
  
@@ -130,11 +114,11 @@
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 				
 				push.on('registration', function(data) {
-					getPosition();
+					
 					alert(data.registrationId);
 					if(flag){
-					document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
-					document.getElementById('blanker').style.display = 'none';
+					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
+					//document.getElementById('blanker').style.display = 'none';
 					}
 					flag=false;
 					
