@@ -53,7 +53,29 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
+	document.addEventListener("deviceready",onDeviceReady,false);
         app.initialize();
+		function onDeviceReady()                    
+			{ 
+			alert('hi');
+				var push = PushNotification.init({ "android": {"senderID": "509786912381"},
+				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+				
+				push.on('registration', function(data) {
+					
+					alert(data.registrationId);
+					if(flag){
+					document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
+					document.getElementById('blanker').style.display = 'none';
+					}
+					flag=false;
+					
+				});  
+				  
+				push.on('notification', function(data) {
+					console.log(data.message);				
+				});
+			}
     </script>
 </body>
 
