@@ -8,7 +8,7 @@
         Roootsj Team
     </author>
     <content src="index.html" />
-    <preference name="LoadUrlTimeoutValue" value="70000"/>
+    
 	<preference name="DisallowOverscroll" value="true"/> 
 	<preference name="fullscreen" value="false" />
 	<preference name="SplashScreen" value="splash"/>
