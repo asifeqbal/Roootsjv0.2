@@ -77,7 +77,8 @@
 			   var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 			  function onSuccess(position) {
-			  //alert('The dice Id = '+deviceId);
+			  alert('The dice Id = '+deviceId);
+			  alert('hi');
 					
 				 document.getElementById('container-frame').src ='http://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devType=Android&devId=' + deviceId;
 			   };
@@ -89,7 +90,7 @@
 			
 			function onDeviceReady()                    
 			{ 
-//				getPosition();				
+			//	getPosition();				
  
 				//alert('hi');
 				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
@@ -99,11 +100,11 @@
 					deviceId = data.registrationId;
 					getPosition();				
 					//alert(data.registrationId);
-					if(flag){
+				/*	if(flag){
 					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
 					//document.getElementById('blanker').style.display = 'none';
 					}
-					flag=false;
+					flag=false;*/
 					
 				});  
 				  
