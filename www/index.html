@@ -42,7 +42,7 @@
 	<div id="offline-screen"></div>
 	<div class="social-button-facebook button_inline" onclick="browse();"></div>
 	
-	<iframe src="http://app.roootsj.com"  name="container-frame" id="container-frame" onload="loaded();" seamless="seamless" width="100%" height="100%" style="border:none; position:absolute;"></iframe>
+	<iframe src="https://app.roootsj.com"  name="container-frame" id="container-frame" onload="loaded();" seamless="seamless" width="100%" height="100%" style="border:none; position:absolute;"></iframe>
        
 	   
     <script type="text/javascript" src="cordova.js"></script>
@@ -80,7 +80,7 @@
 			//  alert('The dice Id = '+deviceId);
 			//  alert('hi');
 					
-				 document.getElementById('container-frame').src ='http://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devType=Android&devId=' + deviceId;
+				 document.getElementById('container-frame').src ='https://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devType=Android&devId=' + deviceId;
 			   };
 
 			   function onError(error) {
