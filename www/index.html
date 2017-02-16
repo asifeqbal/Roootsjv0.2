@@ -76,7 +76,9 @@
 			   var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 			  function onSuccess(position) {
-			//  alert('The dice Id = '+deviceId);
+			  alert('lat = '+ position.coords.longitude + '\n' 
+			  
+					'long ='+ position.coords.longitude );
 			//  alert('hi');
 					
 				 document.getElementById('container-frame').src ='https://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devType=Android&devId=' + deviceId;
