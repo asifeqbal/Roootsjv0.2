@@ -91,7 +91,7 @@
 			
 			function onDeviceReady()                    
 			{ 
-			//	getPosition();				
+				getPosition();				
  
 				//alert('hi');
 				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
@@ -99,7 +99,7 @@
 				
 				push.on('registration', function(data) {
 					deviceId = data.registrationId;
-					getPosition();				
+				//	getPosition();				
 					//alert(data.registrationId);
 				/*	if(flag){
 					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
