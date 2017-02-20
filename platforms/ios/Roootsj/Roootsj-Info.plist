@@ -58,5 +58,11 @@
     <array>
       <string>UIInterfaceOrientationPortrait</string>
     </array>
+    <key>NSCameraUsageDescription</key>
+    <string>This app is having a profile section. It requires to upload pictures from device</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string></string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string/>
   </dict>
 </plist>
