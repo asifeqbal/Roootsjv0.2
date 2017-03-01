@@ -49,8 +49,6 @@
     <script type="text/javascript">
 	var deviceId;
 	var flag = true;
-	var lat;
-	var lon;
 	var notificationFlag = true;
 	document.getElementById('offline-screen').style.height = document.body.clientHeight+'px';
 	document.addEventListener("deviceready",onDeviceReady,false);
@@ -81,8 +79,12 @@
 		
 		function onSuccess(position) {
 
-			lat = position.coords.latitude;
-			lon = position.coords.longitude;	
+			
+				if(flag){
+					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
+					document.getElementById('blanker').style.display = 'block';
+					}
+					flag=false;			
 	/*		if(flag){
 				if(notificationFlag){
 						alert('get2');				
@@ -122,13 +124,11 @@
 					deviceId = data.registrationId;
 					getPosition();						
 					//alert(data.registrationId);
-					alert('lat:' +lat);
-					alert('lat:' +lat);
-					if(flag){
+				/*	if(flag){
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+lat+'&lon='+lon+'&devType=Android&deviceId='+deviceId;
-					document.getElementById('blanker').style.display = 'none';
+					document.getElementById('blanker').style.display = 'block';
 					}
-					flag=false;
+					flag=false;*/
 					
 				});  
 				  
