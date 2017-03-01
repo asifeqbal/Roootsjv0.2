@@ -49,6 +49,23 @@
 		#blanker{background-image:url('loader.gif'); background-repeat:no-repeat; background-position: center center; display:block; z-index:9998; position:fixed; top:0;left:0; height:100%; width:100%; background-color:#12ccb4;}
 		#offline-screen{width:100%; height:130%; background:url('connectionlost.png') no-repeat center center; background-color: #12CCB4; background-size:contain; display:none; z-index:9999; position:fixed; top:0; left:0;}
 	</style>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <style>
+		html, body{width:100%; height:100%;}
+		body{margin:0; padding:0;}
+		#blanker{background-image:url('loader.gif'); background-repeat:no-repeat; background-position: center center; display:block; z-index:9998; position:fixed; top:0;left:0; height:100%; width:100%; background-color:#12ccb4;}
+		#offline-screen{width:100%; height:130%; background:url('connectionlost.png') no-repeat center center; background-color: #12CCB4; background-size:contain; display:none; z-index:9999; position:fixed; top:0; left:0;}
+	</style>
 </head>
 
 <body>
@@ -56,112 +73,111 @@
 	<div id="offline-screen"></div>
 	<div class="social-button-facebook button_inline" onclick="browse();"></div>
 	
-	<iframe src="https://app.roootsj.com"  name="container-frame" id="container-frame" onload="loaded();" seamless="seamless" width="100%" height="100%" style="border:none; position:absolute;"></iframe>
+	<iframe src="#"  name="container-frame" id="container-frame" onload="loaded();" seamless="seamless" width="100%" height="100%" style="border:none; position:absolute;"></iframe>
        
 	<script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>   
     <script type="text/javascript">
-	var deviceId;
-	var flag = true;
-	var notificationFlag = true;
-	document.getElementById('offline-screen').style.height = document.body.clientHeight+'px';
-	document.addEventListener("deviceready",onDeviceReady,false);
+		// Initialize local vars
+		var deviceId;
+		var flag = true;
+		var notificationFlag = true;
+		
+		document.getElementById('offline-screen').style.height = document.body.clientHeight+'px';
+		document.addEventListener("deviceready",onDeviceReady,false);
 	
-			function loaded(){
-				document.getElementById('blanker').style.display = 'none';
+		function loaded(){
+			document.getElementById('blanker').style.display = 'none';
+		}
+		var receiveMessage = function receiveMessage(e){
+			switch (e.data) {
+				case 'setBlanker':
+					document.getElementById('blanker').style.display = 'block';
+					break;
+				case 'removeBlanker':
+					document.getElementById('blanker').style.display = 'none'; 
+					break;
 			}
-			var receiveMessage = function receiveMessage(e){
-				switch (e.data) {
-						case 'setBlanker':
-						document.getElementById('blanker').style.display = 'block';
-						break;
-						case 'removeBlanker':
-						document.getElementById('blanker').style.display = 'none'; 
-						break;
-					}
-			};			
-			window.addEventListener("message", receiveMessage, false);
-			
-			function getPosition() {
+		};			
+
+		window.addEventListener("message", receiveMessage, false);
+
+		function getPosition() {
 			var options = {
 				enableHighAccuracy: true,
 				maximumAge: 3600000
 			}
-				alert('get1');
+
 			var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 		}
 		
-		function onSuccess(position) {                   
+		function onSuccess(position) {
 			if(flag){
-				if(notificationFlag){
-						alert('get2');
-						alert('devId:'+deviceId);						
+				if(notificationFlag){					
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
 				}
 				else{
-				alert('get3');
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude;
 				}
 				flag = false;
 			}
-		}	
+		}
+
 		function onError(error) {
 			if(flag){
 				if(notificationFlag){
-				alert('get4');
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?devType=Android&deviceId='+deviceId;
 				}
 				else{
-				alert('get5');
 					document.getElementById('container-frame').src = 'https://app.roootsj.com';
 				}
 				flag = false;
 			}
 		}
+		
+
+		function onDeviceReady(){
+			var push = PushNotification.init({ "android": {"senderID": "560922606646"},
+			"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+
+			push.on('registration', function(data) {
+				deviceId = data.registrationId;
+				getPosition();				
+			}); 
 			
-			function onDeviceReady()                    
-			{ 
-			//	getPosition();				
- 
-				alert('hi');
-				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
-				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
-				
-				push.on('registration', function(data) {
-					deviceId = data.registrationId;
-					getPosition();						
-					//alert(data.registrationId);
-				/*	if(flag){
-					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
-					//document.getElementById('blanker').style.display = 'none';
-					}
-					flag=false;*/
-					
-				});  
-				  
-				push.on('notification', function(data) {
-					console.log(data.message);				
-				});
-				
+			push.on('error', function(e) {
+				notificationFlag = false;
+				getPosition();
+			}); 
+
+			push.on('notification', function(data) {
+				navigator.notification.alert(
+                    data.message,         // message
+                    null,                 // callback
+                    data.title,           // title
+                    'Ok'                  // buttonName
+				);			
+			});
+			
 			// Blanker on change
-				document.addEventListener("online", doWhenOnline, false);
-				document.addEventListener("offline", doWhenOffline, false);
-				var networkState = navigator.connection.type;
-				
-				if(networkState == Connection.NONE) {
-					doWhenOffline();
-				}
-				else{
-					doWhenOnline();
-				} 	
+			document.addEventListener("online", doWhenOnline, false);
+			document.addEventListener("offline", doWhenOffline, false);
+			var networkState = navigator.connection.type;
+
+			if(networkState == Connection.NONE) {
+				doWhenOffline();
 			}
-			
-			function doWhenOnline(){
-				document.getElementById('offline-screen').style.display = 'none';
-			}
-			function doWhenOffline(){				
-				document.getElementById('offline-screen').style.display = 'block';
-			}
+			else{
+				doWhenOnline();
+			} 
+		}
+
+		function doWhenOnline(){
+			document.getElementById('offline-screen').style.display = 'none';
+		}
+		function doWhenOffline(){				
+			document.getElementById('offline-screen').style.display = 'block';
+		}
     </script>
 	
 </body>
