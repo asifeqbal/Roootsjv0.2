@@ -12,7 +12,7 @@
 	<preference name="DisallowOverscroll" value="true"/> 
 	<preference name="fullscreen" value="false" />
 	<preference name="SplashScreen" value="splash"/>
-	<preference name="SplashScreenDelay" value = "6000" />
+	<preference name="SplashScreenDelay" value = "4000" />
 	<preference name="ShowSplashScreenSpinner" value="false" />
 	<preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />   
@@ -77,4 +77,5 @@
 	
 	<allow-intent href="*" />
 	<allow-navigation href="*" />
+	<allow-navigation href="https://app.roootsj.com/*" />
 </widget>
