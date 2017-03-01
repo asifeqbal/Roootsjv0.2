@@ -81,8 +81,7 @@
 
 			
 				if(flag){
-					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
-					document.getElementById('blanker').style.display = 'block';
+					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude;
 					}
 					flag=false;			
 	/*		if(flag){
@@ -114,17 +113,17 @@
 			
 			function onDeviceReady()                    
 			{ 
-			//	getPosition();				
+				getPosition();				
  
 				alert('hi');
-				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
+			/*	var push = PushNotification.init({ "android": {"senderID": "560922606646"},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 				
 				push.on('registration', function(data) {
 					deviceId = data.registrationId;
 					getPosition();						
 					//alert(data.registrationId);
-				/*	if(flag){
+					if(flag){
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+lat+'&lon='+lon+'&devType=Android&deviceId='+deviceId;
 					document.getElementById('blanker').style.display = 'block';
 					}
