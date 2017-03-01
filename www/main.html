@@ -42,12 +42,14 @@
 	<div id="offline-screen"></div>
 	<div class="social-button-facebook button_inline" onclick="browse();"></div>
 	
-	<iframe src="#"  name="container-frame" id="container-frame" onload="loaded();" seamless="seamless" width="100%" height="100%" style="border:none; position:absolute;"></iframe>
+	<iframe src="#"  name="container-frame" id="container-frame"  seamless="seamless" width="100%" height="100%" style="border:none; position:absolute;"></iframe>
        
 	<script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>   
     <script type="text/javascript">
 	var deviceId;
+	var flag = true;
+	var notificationFlag = true;
 	document.getElementById('offline-screen').style.height = document.body.clientHeight+'px';
 	document.addEventListener("deviceready",onDeviceReady,false);
 	
@@ -103,13 +105,14 @@
 			{ 
 			//	getPosition();				
  
-				//alert('hi');
+				alert('hi');
 				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 				
 				push.on('registration', function(data) {
 					deviceId = data.registrationId;
-					getPosition();				
+					getPosition();	
+					loaded();					
 					//alert(data.registrationId);
 				/*	if(flag){
 					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
