@@ -69,41 +69,31 @@
 			window.addEventListener("message", receiveMessage, false);
 			
 			function getPosition() {
-			var options = {
-				enableHighAccuracy: true,
-				maximumAge: 3600000
-			}
-				alert('get1');
-			var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-		}
-		
-		function onSuccess(position) {                   
-			if(flag){
-				if(notificationFlag){
-						alert('get2');				
-					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
-				}
-				else{
-				alert('get3');
-					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude;
-				}
-				flag = false;
-			}
-		}	
 
-		function onError(error) {
-			if(flag){
-				if(notificationFlag){
-				alert('get4');
-					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?devType=Android&deviceId='+deviceId;
-				}
-				else{
-				alert('get5');
-					document.getElementById('container-frame').src = 'https://app.roootsj.com';
-				}
-				flag = false;
-			}
-		}
+									   var options = {
+										  enableHighAccuracy: true,
+										  maximumAge: 3600000
+									   }
+										
+									   var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+
+									   function onSuccess(position) {
+
+										  alert('Latitude: '          + position.coords.latitude          + '\n' +
+											 'Longitude: '         + position.coords.longitude         + '\n' +
+											 'Altitude: '          + position.coords.altitude          + '\n' +
+											 'Accuracy: '          + position.coords.accuracy          + '\n' +
+											 'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+											 'Heading: '           + position.coords.heading           + '\n' +
+											 'Speed: '             + position.coords.speed             + '\n' +
+											 'Timestamp: '         + position.timestamp                + '\n');
+									   };
+
+									   function onError(error) {
+										  alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+									   }
+									}
+
 			
 			function onDeviceReady()                    
 			{ 
@@ -118,11 +108,11 @@
 					getPosition();	
 					loaded();					
 					//alert(data.registrationId);
-					if(flag){
-					document.getElementById('container-frame').src = 'https://app.roootsj.com';
+				/*	if(flag){
+					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
 					//document.getElementById('blanker').style.display = 'none';
 					}
-					flag=false;
+					flag=false;*/
 					
 				});  
 				  
