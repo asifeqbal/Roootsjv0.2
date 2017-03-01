@@ -49,6 +49,8 @@
     <script type="text/javascript">
 	var deviceId;
 	var flag = true;
+	var lat;
+	var lon;
 	var notificationFlag = true;
 	document.getElementById('offline-screen').style.height = document.body.clientHeight+'px';
 	document.addEventListener("deviceready",onDeviceReady,false);
@@ -77,8 +79,11 @@
 			var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 		}
 		
-		function onSuccess(position) {                   
-			if(flag){
+		function onSuccess(position) {
+
+			lat = position.coords.latitude;
+			lon = position.coords.longitude;	
+	/*		if(flag){
 				if(notificationFlag){
 						alert('get2');				
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
@@ -88,7 +93,7 @@
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude;
 				}
 				flag = false;
-			}
+			}*/
 		}	
 
 		function onError(error) {
@@ -107,21 +112,23 @@
 			
 			function onDeviceReady()                    
 			{ 
-				 
+			//	getPosition();				
+ 
 				alert('hi');
-				getPosition();
-			/*	var push = PushNotification.init({ "android": {"senderID": "560922606646"},
-				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );*/
+				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
+				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 				
-			/*	push.on('registration', function(data) {
+				push.on('registration', function(data) {
 					deviceId = data.registrationId;
 					getPosition();						
 					//alert(data.registrationId);
+					alert('lat:' +lat);
+					alert('lat:' +lat);
 					if(flag){
-					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
-					//document.getElementById('blanker').style.display = 'none';
+					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+lat+'&lon='+lon+'&devType=Android&deviceId='+deviceId;
+					document.getElementById('blanker').style.display = 'none';
 					}
-					flag=false;*/
+					flag=false;
 					
 				});  
 				  
