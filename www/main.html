@@ -73,16 +73,18 @@
 				enableHighAccuracy: true,
 				maximumAge: 3600000
 			}
-
+				alert('get1');
 			var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 		}
 		
 		function onSuccess(position) {                   
 			if(flag){
-				if(notificationFlag){					
+				if(notificationFlag){
+						alert('get2');				
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
 				}
 				else{
+				alert('get3');
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude;
 				}
 				flag = false;
@@ -92,9 +94,11 @@
 		function onError(error) {
 			if(flag){
 				if(notificationFlag){
+				alert('get4');
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?devType=Android&deviceId='+deviceId;
 				}
 				else{
+				alert('get5');
 					document.getElementById('container-frame').src = 'https://app.roootsj.com';
 				}
 				flag = false;
