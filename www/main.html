@@ -20,6 +20,7 @@
     under the License.
 -->
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
@@ -47,6 +48,8 @@
     <script type="text/javascript" src="js/index.js"></script>   
     <script type="text/javascript">
 	var deviceId;
+	var flag = true;
+	var notificationFlag = true;
 	document.getElementById('offline-screen').style.height = document.body.clientHeight+'px';
 	document.addEventListener("deviceready",onDeviceReady,false);
 	
@@ -66,37 +69,55 @@
 			window.addEventListener("message", receiveMessage, false);
 			
 			function getPosition() {
-			   var options = {
-				  enableHighAccuracy: true,
-				  maximumAge: 3600000
-			   }
-				
-			   var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-			  function onSuccess(position) {
-			 
-			// alert('Device id:' + deviceId);
-					
-				document.getElementById('container-frame').src ='https://app.roootsj.com/index.php?lat='+ position.coords.latitude + '&lon=' + position.coords.longitude + '&devType=Android&devId=' + deviceId;
-			
-			   };
-			   function onError(error) {
-				  alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
-			   }
+			var options = {
+				enableHighAccuracy: true,
+				maximumAge: 3600000
 			}
+				alert('get1');
+			var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+		}
+		
+		function onSuccess(position) {                   
+			if(flag){
+				if(notificationFlag){
+						alert('get2');				
+					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
+				}
+				else{
+				alert('get3');
+					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude;
+				}
+				flag = false;
+			}
+		}	
+
+		function onError(error) {
+			if(flag){
+				if(notificationFlag){
+				alert('get4');
+					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?devType=Android&deviceId='+deviceId;
+				}
+				else{
+				alert('get5');
+					document.getElementById('container-frame').src = 'https://app.roootsj.com';
+				}
+				flag = false;
+			}
+		}
 			
 			function onDeviceReady()                    
 			{ 
-			//	getPosition();				
- 
-				//alert('hi');
-				var push = PushNotification.init({ "android": {"senderID": "560922606646"},
-				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+				 
+				alert('hi');
+				getPosition();
+			/*	var push = PushNotification.init({ "android": {"senderID": "560922606646"},
+				"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );*/
 				
-				push.on('registration', function(data) {
+			/*	push.on('registration', function(data) {
 					deviceId = data.registrationId;
-					getPosition();				
+					getPosition();						
 					//alert(data.registrationId);
-				/*	if(flag){
+					if(flag){
 					//document.getElementById('container-frame').src = 'http://app.roootsj.com/index.php?id=1&dType=2&did='+data.registrationId;
 					//document.getElementById('blanker').style.display = 'none';
 					}
