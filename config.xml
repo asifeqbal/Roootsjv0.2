@@ -60,7 +60,7 @@
     
     <access origin="*" />
 	<access origin="https://www.facebook.com/" />
-	<access origin="https://app.roootsj.com/" />	
+	<access origin="https://app.roootsj.com/" />
 	
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
