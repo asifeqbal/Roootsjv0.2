@@ -82,5 +82,7 @@
 	
 	<allow-intent href="*.app.roootsj.com/*"/>
 	<allow-access href="https://*/*" />
+	<allow-navigation href="http://*/*" />
+	<allow-intent href="*://*.app.roootsj.com/*" />
 
 </widget>
