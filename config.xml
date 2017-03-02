@@ -62,7 +62,7 @@
 	<access origin="https://www.facebook.com/" />
 	<access origin="https://app.roootsj.com/" />
 	
-    <allow-intent href="http://*/*" />
+    
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
@@ -82,7 +82,6 @@
 	
 	<allow-intent href="*.app.roootsj.com/*"/>
 	<allow-access href="https://*/*" />
-	<allow-navigation href="http://*/*" />
 	<allow-intent href="*://*.app.roootsj.com/*" />
 
 </widget>
