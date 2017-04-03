@@ -10,7 +10,7 @@
     <content src="index.html" />
     
 	<preference name="DisallowOverscroll" value="true"/> 
-	<preference name="fullscreen" value="true" />
+	<preference name="fullscreen" value="false" />
 	<preference name="SplashScreen" value="splash"/>
 	<preference name="SplashScreenDelay" value = "4000" />
 	<preference name="ShowSplashScreenSpinner" value="false" />
