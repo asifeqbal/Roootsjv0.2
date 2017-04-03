@@ -106,6 +106,8 @@
 		
 
 		function onDeviceReady(){
+			document.addEventListener("resume", onResume, false);
+			
 			var push = PushNotification.init({ "android": {"senderID": "560922606646"},
 			"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
@@ -140,7 +142,11 @@
 				doWhenOnline();
 			} 
 		}
-
+		
+		function onResume() {
+			// Handle the resume event			
+			getPosition();
+		}
 		function doWhenOnline(){
 			document.getElementById('offline-screen').style.display = 'none';
 		}
