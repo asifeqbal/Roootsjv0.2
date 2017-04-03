@@ -32,7 +32,7 @@
     <style>
 		html, body{width:100%; height:100%;}
 		body{margin:0; padding:0;}
-		#blanker{background-image:url('loader.gif'); background-repeat:no-repeat; background-position: center center; display:block; z-index:9998; position:fixed; top:0;left:0; height:100%; width:100%; background-color:#12ccb4;}
+		#blanker{background-image:url('loader.gif'); background-repeat:no-repeat; background-position: center center; display:block; z-index:9998; background-size:100px; position:fixed; top:0;left:0; height:100%; width:100%; background-color:#12ccb4;}
 		#offline-screen{width:100%; height:130%; background:url('connectionlost.png') no-repeat center center; background-color: #12CCB4; background-size:contain; display:none; z-index:9999; position:fixed; top:0; left:0;}
 	</style>
 </head>
@@ -82,7 +82,13 @@
 		
 		function onSuccess(position) {
 			if(flag){
-				if(notificationFlag){					
+				if(notificationFlag){	
+			alert('lat:' +  position.coords.latitude  + '/n' + 
+				'long:'+   position.coords.longitude    + '/n');
+				
+			alert('id:' +  deviceId +)				
+				
+			
 					document.getElementById('container-frame').src = 'https://app.roootsj.com/index.php?lat='+position.coords.latitude+'&lon='+position.coords.longitude+'&devType=Android&deviceId='+deviceId;
 				}
 				else{
